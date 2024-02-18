@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/igor89ruan/SiteVendasIngressos/issues"
   },
-  "homepage": "https://github.com/igor89ruan/SiteVendasIngressos#readme"
+  "homepage": "https://github.com/igor89ruan/SiteVendasIngressos#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
