@@ -1,29 +1,52 @@
-import Express  from "express";
+import express  from "express";
 import process from  'process';
 import path from "path";
+import session from "express-session";
+import autenticar from "./public/seguranca/autenticar.js";
 
 const host = '0.0.0.0';// Representa todas as interfaces (placas de rede) do computador onde essa aplicação for executada
 const porta = 3000; //Porta identifica um programa em execução no host hospedeiro
 
-const app = Express();
+const app = express();
 
-app.get("/",(pega, devolve) => {
-    devolve.write('<h1>Seja bem-vindo ao nosso site!</h1>');
-    devolve.end();
-}); // Função de seta ou arrow function
-// Pega é o parâmetro que recebe a requisição e Devolve é o parâmetro que envia a resposta
+app.use(express.urlencoded( { extended: true }));//Permite o envio de dados do formulário por meio do método POST
+//gerencie uma sessão  para cada usuário 
+app.use(session({
+    secret: 'minhachavesecreta',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        maxAge: 60 * 1000 * 15, //Tempo da vida do cookie em milisegundos
+    }
+}))
 
-// req / res , ou seja, request e  response (requisição e resposta)
-app.get('/index.html', (pega, devolve) => {
-    devolve.write('<h1>Esse é o index.html</h1>');
-    devolve.end();
+app.post('/login', (requisicao, resposta)=> {
+    const usuario = requisicao.body.usuario;
+    const senha = requisicao.body.senha;
+
+    if (usuario && senha && usuario === 'igor' && senha === '123') {
+        requisicao.session.usuarioLogado = true;
+        resposta.redirect('./privado/inicio.html')
+    }  else{
+        resposta.redirect('/login.html')
+    }
+})
+
+app.get('/logout', (requisicao, resposta) => {
+    requisicao.session.destroy((err) => {
+        if (err) {
+            console.error('Erro ao encerrar a sessão:', err);
+        }
+        resposta.redirect('/public/login.html');
+    });
 });
 
+
 // O express oferece funcionalidades para permetir que o conteúdo estático seja fornecido
-app.use(Express.static(path.join(process.cwd(), 'public'))); // usa os conteudo estaticos desse caminho, ou seja, na pasta public
+app.use(express.static(path.join(process.cwd(), 'public'))); // usa os conteudo estaticos desse caminho, ou seja, na pasta public
 
-
+app.use(autenticar, express.static(path.join(process.cwd(), 'privado')));
 
 app.listen(porta, host, ()=>{
     console.log( `Servidor rodando na porta em http://${host}:${porta}` );
-})
+});

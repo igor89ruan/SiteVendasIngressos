@@ -255,3 +255,14 @@ finalizacao.addEventListener("click", function (event) {
         alert("CADASTRO REALIZADO COM SUCESSO");
     }
 });
+
+
+function atualizarPrecoTotal(precoUnitarioId, quantidadeId, precoTotalId) {
+    var quantidade = parseFloat(document.getElementById(quantidadeId).value);
+    var precoUnitarioString = document.getElementById(precoUnitarioId).innerText.replace('.', '').replace(',', '.'); 
+    var precoUnitario = parseFloat(precoUnitarioString.replace(',', '.')); 
+    var precoTotal = quantidade * precoUnitario;
+
+    // Formatar o resultado para exibir corretamente a casa decimal
+    document.getElementById(precoTotalId).innerText = precoTotal.toLocaleString('pt-BR', { minimumFractionDigits: 1 });
+}

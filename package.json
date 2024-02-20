@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/igor89ruan/SiteVendasIngressos#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "express-session": "^1.18.0"
   }
 }
