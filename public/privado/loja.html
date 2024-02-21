@@ -44,36 +44,29 @@
                     <div class="header__nav">
                         <nav class="header__menu mobile-menu">
                             <ul>
-                                <li><a href="inicio.html">Inicio</a></li>
-                                <li><a href="fotos.html">Fotos</a></li>
-                                <li  class="active"><a href="loja.html">Ingressos</a></li>
-                                <div class="header__right__social">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-instagram"></i></a>
-                                    <a href="#"><i class="fa fa-dribbble"></i></a>
-                                </div>
-                                <li><a href="#" class="user-avatar" id="userAvatar"><img src="img/alok.avif" alt="Foto do Usuário"></a></li>
+                                <li><a href="index.html">Inicio</a></li>
+                                <li><a href="about.html">Fotos</a></li>
+                                <li class="active"><a href="login.html">Login</a></li>
+                                <li><a href="cadastro.html">Registre-se</a></li>
                             </ul>
                         </nav>
-
-                        <div class="user-menu" id="userMenu">
-                            <ul>
-                                <li><a href="#">Perfil</a></li>
-                                <li><a href="#">Configurações</a></li>
-                                <li><a href="/logout">Sair</a></li>
-                            </ul>
+                        <div class="header__right__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-dribbble"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
+            <div id="mobile-menu-wrap"></div>
         </div>
     </header>
     <!-- Header Section End -->
 
     <!-- Countdown Section Begin -->
     <section class="hero spad set-bg">
-        <video src="img/videos/videobrasil.mp4" autoplay muted loop playsinline id="loja"></video>
+        <video src="img/videos/videobelgica.mp4" autoplay muted loop playsinline id="loja"></video>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -100,7 +93,7 @@
                         </div>
                     </div>
                     <div class="buy__tickets">
-                        <a href="#" class="primary-btn" onclick="scrollToSection()">Buy tickets</a>
+                        <a href="tours.html" class="primary-btn">Buy tickets</a>
                     </div>
                 </div>
             </div>
@@ -112,30 +105,52 @@
     <section class="tours spad">
         <div class="container">
             <div class="row">
+                <!-- Tomorrowland 2024 - Passe Diário -->
                 <div class="col-lg-6 order-lg-1">
-                    <div class="tours__item__text" >
+                    <div class="tours__item__text">
                         <h2>Tomorrowland 2024 - Passe Diário</h2>
                         <div class="tours__text__widget">
                             <ul>
                                 <li>
                                     <i class="fa fa-clock-o"></i>
                                     <span>15:00pm</span>
-                                    <span>6 Dez, 2024</span>
+                                    <span>1 junho á 20 junho, 2024</span>
                                 </li>
                                 <li>
                                     <i class="fa fa-map-marker"></i>
-                                    Boom, Bélgica
+                                    Boom, Bélgica <br>
+                                    80 mil ingressos Dísponivel
                                 </li>
                             </ul>
-                            <div class="price">R$ 683,70</div>
+                            <div class="price">R$ <span id="precoUnitario">683,00</span></div>
                         </div>
                         <div class="tours__text__desc">
                             <p>Realizado na capital da música eletrônica da Europa, o Tomorrowland acolhe uma impressionante 
                                 lista de artistas de techno. Este passe diário permite que você experimente a magia do Tomorrowland por um dia.</p>
                         </div>
+    
+                        <!-- Adicionando o campo de seleção (input) -->
+                        <label for="tipoBilhete">Selecione no máximo 10 Ingressos:</label>
+                        <select id="tipoBilhete" name="tipoBilhete" onchange="atualizarPrecoTotal('precoUnitario', 'tipoBilhete', 'precoTotal')">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+    
+                        <div id="frase-total">Total: R$ <span id="precoTotal">683,00</span></div>
+    
                         <a class="primary-btn border-btn">COMPRAR</a>
                     </div>
                 </div>
+    
+                <!-- Tomorrowland 2024 - Passe de Fim de Semana -->
                 <div class="col-lg-6 order-lg-2">
                     <div class="tours__item__pic">
                         <img src="img/bilhete1.jpg" alt="">
@@ -149,28 +164,50 @@
                                 <li>
                                     <i class="fa fa-clock-o"></i>
                                     <span>15:00pm</span>
-                                    <span>6 de dez, 15:00</span>
+                                    <span>1 junho á 20 junho, 15:00</span>
                                 </li>
                                 <li>
                                     <i class="fa fa-map-marker"></i>
-                                    Boom, Bélgica
+                                    Boom, Bélgica <br>
+                                    65 mil ingressos Dísponivel
                                 </li>
                             </ul>
-                            <div class="price">R$ 1.611,20</div>
+                            <div class="price">R$ <span id="precoUnitario1">1730,00</span></div>
                         </div>
                         <div class="tours__text__desc">
                             <p>Este passe de fim de semana permite que você mergulhe na experiência completa do Tomorrowland.
-                                 Com este passe, você terá acesso ao festival durante todo o fim de semana.</p>
+                                Com este passe, você terá acesso ao festival durante todo o fim de semana.</p>
                         </div>
+    
+                        <!-- Adicionando o campo de seleção (input) -->
+                        <label for="tipoBilhete1">Selecione no máximo 10 Ingressos:</label>
+                        <select id="tipoBilhete1" name="tipoBilhete1" onchange="atualizarPrecoTotal('precoUnitario1', 'tipoBilhete1', 'precoTotal1')">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+    
+                        <div id="frase-total">Total: R$ <span id="precoTotal1">1730,00</span></div>
+    
                         <a href="#" class="primary-btn border-btn">Comprar</a>
                     </div>
                 </div>
+    
+                <!-- Tomorrowland 2024 - Pacote Magnificent Greens -->
                 <div class="col-lg-6 order-lg-3">
                     <div class="tours__item__pic tours__item__pic--left">
                         <img src="img/bilhete3.jpg" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6 order-lg-5">
+                    
                     <div class="tours__item__text">
                         <h2>Tomorrowland 2024 - Pacote Magnificent Greens</h2>
                         <div class="tours__text__widget">
@@ -178,26 +215,44 @@
                                 <li>
                                     <i class="fa fa-clock-o"></i>
                                     <span>15:00pm</span>
-                                    <span>6  Dez, 2024</span>
+                                    <span>1 junho á 20 junho, 2024</span>
                                 </li>
                                 <li>
                                     <i class="fa fa-map-marker"></i>
-                                    Boom, Bélgica
+                                    Boom, Bélgica<br>
+                                    8 mil ingressos Dísponivel
                                 </li>
                             </ul>
-                            <div class="price">R$ 2.019,30</div>
+                            <div class="price">R$ <span id="precoUnitario2">2.040,00</span></div>
                         </div>
                         <div class="tours__text__desc">
                             <p>O pacote Magnificent Greens inclui acesso ao festival e ao camping. Este é o pacote mais caro, 
                                 mas também o mais completo, proporcionando a experiência definitiva do Tomorrowland.</p>
                         </div>
-                        
+    
+                        <!-- Adicionando o campo de seleção (input) -->
+                        <label for="tipoBilhete2">Selecione no máximo 10 Ingressos:</label>
+                        <select id="tipoBilhete2" name="tipoBilhete2" onchange="atualizarPrecoTotal('precoUnitario2', 'tipoBilhete2', 'precoTotal2')">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+    
+                        <div id="frase-total">Total: R$ <span id="precoTotal2">2040,00</span></div>
+    
                         <a href="#" class="primary-btn border-btn">Comprar</a>
                     </div>
+                    
                     <h1 id="info">Por favor, note que estes são os preços da fase de pré-venda. Os preços dos ingressos são mais caros se você não conseguir
                         entrar na Pré-Venda, mas na chamada Venda Mundial. Para mais detalhes, você pode visitar o site oficial do Tomorrowland</h1>
                 </div>
-                
                 <div class="col-lg-6 order-lg-6">
                     <div class="tours__item__pic tours__item__pic--last">
                         <img src="img/bilhete4.jpg" alt="">
