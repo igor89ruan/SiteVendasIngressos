@@ -20,3 +20,9 @@ function logout() {
     alert('Logout function called');
 }
 
+function scrollToSection() {
+    const section = document.querySelector('.tours__item__text');
+    if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+    }
+}
