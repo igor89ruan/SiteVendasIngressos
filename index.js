@@ -3,6 +3,8 @@ import process from  'process';
 import path from "path";
 import session from "express-session";
 import autenticar from "./public/seguranca/autenticar.js";
+//////////////////////////////
+import mysql from 'mysql2';
 
 const host = '0.0.0.0';// Representa todas as interfaces (placas de rede) do computador onde essa aplicação for executada
 const porta = 3000; //Porta identifica um programa em execução no host hospedeiro
@@ -19,7 +21,7 @@ app.use(session({
         maxAge: 60 * 1000 * 15, //Tempo da vida do cookie em milisegundos
     }
 }))
-
+/*
 app.post('/login', (requisicao, resposta)=> {
     const usuario = requisicao.body.usuario;
     const senha = requisicao.body.senha;
@@ -40,8 +42,62 @@ app.get('/logout', (requisicao, resposta) => {
         resposta.redirect('/public/login.html');
     });
 });
+*/
+
+///////////////////////////////////////////
 
 
+
+//const app = express();
+
+// Configuração da conexão com o banco de dados
+const connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'backend'
+});
+
+connection.connect((erro) => {
+    if (erro) {
+        console.error('Erro ao conectar ao banco de dados:', erro);
+    } else {
+        console.log('Conexão com o banco de dados estabelecida com sucesso!');
+    }
+});
+
+/*app.use(express.urlencoded({ extended: true }));
+app.use(session({
+    secret: 'chaveSecreta',
+    resave: false,
+    saveUninitialized: true
+}));
+*/
+app.post('/login', (requisicao, resposta) => {
+    const email = requisicao.body.email;
+    const senha = requisicao.body.senha;
+
+    // Realize uma consulta SQL para verificar se o e-mail e a senha correspondem a um usuário válido no banco de dados
+    // Substitua 'nomeDaTabela' pelo nome da tabela onde as informações de login estão armazenadas
+    // Substitua 'campoEmail' e 'campoSenha' pelos nomes dos campos de e-mail e senha no banco de dados
+
+    connection.query('SELECT * FROM cliente WHERE email = ? AND senha = ?', [email, senha], (erro, resultados) => {
+        if (erro) {
+            console.error(erro);
+            resposta.redirect('/login.html');
+        } else {
+            console.log('Resultados:', resultados);
+            if (resultados.length > 0) {
+                requisicao.session.usuarioLogado = true;
+                resposta.redirect('./privado/inicio.html');
+            } else {
+                resposta.redirect('/login.html');
+            }
+        }
+    });
+});
+
+///////////////////////////////////////////
 // O express oferece funcionalidades para permetir que o conteúdo estático seja fornecido
 app.use(express.static(path.join(process.cwd(), 'public'))); // usa os conteudo estaticos desse caminho, ou seja, na pasta public
 

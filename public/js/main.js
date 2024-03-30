@@ -146,6 +146,7 @@
 
 })(jQuery);
 
+/*
 // validação dos campos do formulario
 
 function cache(valor) {
@@ -265,4 +266,13 @@ function atualizarPrecoTotal(precoUnitarioId, quantidadeId, precoTotalId) {
 
     // Formatar o resultado para exibir corretamente a casa decimal
     document.getElementById(precoTotalId).innerText = precoTotal.toLocaleString('pt-BR', { minimumFractionDigits: 1 });
+}
+*/
+
+function delayRedirect(event, url) {
+    event.preventDefault(); // Impede o comportamento padrão do link
+
+    setTimeout(function() {
+      window.location.href = url; // Redireciona para a página após 10 segundos
+    }, 10000); // 10 segundos em milissegundos
 }

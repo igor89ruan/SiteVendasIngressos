@@ -88,6 +88,14 @@ img {
 	max-width: 100%;
 }
 
+#logotipo{
+	background-color: white;
+	position: relative;
+	top: 20px;
+	left: -80px;
+	border-radius: 20px;
+}
+
 input:focus,
 select:focus,
 button:focus,
@@ -133,7 +141,7 @@ ol {
 
 .section-title h1 {
 	font-size: 100px;
-	color: #463f3a;
+	color:  #da0100;
 	font-family: "Rockville Solid Regular";
 	position: absolute;
 	left: 0;
