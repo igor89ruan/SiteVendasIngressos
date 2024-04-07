@@ -7,7 +7,7 @@ import autenticar from "./public/seguranca/autenticar.js";
 import mysql from 'mysql2';
 
 const host = '0.0.0.0';// Representa todas as interfaces (placas de rede) do computador onde essa aplicação for executada
-const porta = 3000; //Porta identifica um programa em execução no host hospedeiro
+const porta = 4000; //Porta identifica um programa em execução no host hospedeiro
 
 const app = express();
 
@@ -66,6 +66,7 @@ connection.connect((erro) => {
     }
 });
 
+
 /*app.use(express.urlencoded({ extended: true }));
 app.use(session({
     secret: 'chaveSecreta',
@@ -74,12 +75,11 @@ app.use(session({
 }));
 */
 app.post('/login', (requisicao, resposta) => {
-    const email = requisicao.body.email;
+    const email = requisicao.body.email;                                   
     const senha = requisicao.body.senha;
 
     // Realize uma consulta SQL para verificar se o e-mail e a senha correspondem a um usuário válido no banco de dados
-    // Substitua 'nomeDaTabela' pelo nome da tabela onde as informações de login estão armazenadas
-    // Substitua 'campoEmail' e 'campoSenha' pelos nomes dos campos de e-mail e senha no banco de dados
+
 
     connection.query('SELECT * FROM cliente WHERE email = ? AND senha = ?', [email, senha], (erro, resultados) => {
         if (erro) {

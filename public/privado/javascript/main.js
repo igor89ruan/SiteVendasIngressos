@@ -147,7 +147,7 @@
 })(jQuery);
 
 // validação dos campos do formulario
-
+/*
 function cache(valor) {
     valor = valor.replace(/\D/g, '');
     valor = valor.replace(/(\d{1,})(\d{2})$/, '$1,$2');
@@ -255,3 +255,4 @@ finalizacao.addEventListener("click", function (event) {
         alert("CADASTRO REALIZADO COM SUCESSO");
     }
 });
+*/

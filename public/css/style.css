@@ -3052,29 +3052,14 @@ select {
 	transform: translateY(-50%);
 }
 
-.cpf, .cpf1{
-	margin-right: 20px;
-}
-.nome, .nome1{
-	margin-right: 30px;
-}
-
 #mensagem{
-	position: absolute;
-	top: 70%;
-	left: 130%;
-	transform: translateY(-50%);
-	animation: digitar 1s steps(40) infinite;
+	text-align: center;
+	width: 80%;
+	font-size: 25px;
+	margin-top: 50px;
+	margin-left: 185px;
 }
 
-@keyframes digitar {
-	from {
-		width: 0;
-	}
-	to {
-		width: 100%;
-	}
-}
 
 .input-field {
 	background: none;

@@ -270,9 +270,8 @@ function atualizarPrecoTotal(precoUnitarioId, quantidadeId, precoTotalId) {
 */
 
 function delayRedirect(event, url) {
-    event.preventDefault(); // Impede o comportamento padrão do link
-
+    event.preventDefault(); // Impede o comportamento padrão do botão
     setTimeout(function() {
-      window.location.href = url; // Redireciona para a página após 10 segundos
-    }, 10000); // 10 segundos em milissegundos
-}
+        window.location.href = url;
+    }, 10000); // Redireciona após 3 segundos
+};

@@ -36,8 +36,7 @@ function cadastrarCliente(cliente) {
         },
         body: JSON.stringify(cliente)
     }).then(resposta => {
-        return resposta.json();
-
+        return resposta.json() // Retorna os dados para a próxima promessa na cadeia
     }).then(dados => {
         if(dados.status){//inclui corretamente o cliente no backend
             mostrarMensagem(dados.mensagem, true);
@@ -59,5 +58,5 @@ function mostrarMensagem(mensagem, sucesso = false){
         divMensagem.innerHTML = `<div class="alert alert-danger" role="alert">${mensagem}</div>`; 
     }
 
-    setTimeout(() => {divMensagem.innerHTML = '';}, 5000);
+    setTimeout(() => {divMensagem.innerHTML = ''}, 10000);
 };
