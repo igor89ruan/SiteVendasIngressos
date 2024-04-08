@@ -197,6 +197,8 @@ function apagarEvento() {
                 mostrarMensagem("Ocorreu um erro ao processar a solicitação.", false);
             }
             buscarEventos(); // atualiza a lista após a exclusão
+            formularioCadastro.reset();
+            
         })
         .catch(erro => {
             mostrarMensagem(erro.message, false);
